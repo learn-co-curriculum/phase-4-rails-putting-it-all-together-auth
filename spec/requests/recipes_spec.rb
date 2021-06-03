@@ -68,7 +68,7 @@ RSpec.describe "Recipes", type: :request do
       end
 
       it "returns a 401 (Unauthorized) HTTP status code" do
-        post "/signup", params: user_params
+        post "/recipes"
 
         expect(response).to have_http_status(:unauthorized)
       end

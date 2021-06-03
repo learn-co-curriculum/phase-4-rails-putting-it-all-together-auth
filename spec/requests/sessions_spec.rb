@@ -21,12 +21,6 @@ RSpec.describe "Sessions", type: :request do
 
         expect(session[:user_id]).to eq(user.id)
       end
-
-      it "returns a 201 (Created) status code" do
-        post "/signup", params: user_params
-        
-        expect(response).to have_http_status(:created)
-      end
     end
 
     context "with invalid password" do

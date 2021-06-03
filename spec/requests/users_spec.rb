@@ -54,6 +54,7 @@ RSpec.describe "Users", type: :request do
         { 
           username: "test_user",
           password: "sup3r-secret",
+          password_confirmation: "wrong",
           image_url: "https://via.placeholder.com/150", 
           bio: "bio"
         } 
