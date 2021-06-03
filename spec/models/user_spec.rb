@@ -6,9 +6,13 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
+  it "has many recipes" do
+    expect(User.new).to respond_to(:recipes)
+  end
+
   describe "validations" do
-    it { is_expected_to validate_presence_of(:username) }
-    it { is_expected_to validate_uniqueness_of(:username) }
+    it { is_expected.to validate_presence_of(:username) }
+    it { is_expected.to validate_uniqueness_of(:username) }
   end
 
   describe "authenticate" do

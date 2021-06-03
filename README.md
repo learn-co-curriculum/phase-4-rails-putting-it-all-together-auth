@@ -49,7 +49,7 @@ overwriting the existing tests.
 
 Create a `User` model with the following attributes:
 
-- `username` that isa `string` type
+- `username` that is a `string` type
 - `password_digest` that is a `string` type
 - `image_url` that is a `string` type
 - `bio` that is a `string` type
@@ -59,6 +59,7 @@ Your `User` model should also:
 - incorporate the `has_secure_password` macro to enable password encryption with `bcrypt`
 - validate the user's username to ensure that it is **present** and **unique**
   (no two users can have the same username)
+- a user **has many** recipes
 
 Next, create a `Recipe` model with the following attributes:
 
@@ -71,6 +72,8 @@ Add validations for the `Recipe` model:
 
 - `title` must be present
 - `instructions` must be present and at least 50 characters long
+
+Run the migrations after creating your models.
 
 Check your work by running `learn test` and ensure that the tests for the models
 are passing before moving forward.
@@ -95,6 +98,23 @@ Make sure this route works as intended by running `learn test` before moving
 forward. You should also be able to test this in the React application by
 signing up via the sign up form.
 
+### Auto-Login Feature
+
+Users can log into our app! 🎉 But we want them to **stay** logged in when they
+refresh the page, or navigate back to our site from somewhere else.
+
+Handle auto-login by implementing a `GET /me` route. It should:
+
+- Be handled in the `UsersController` with a `show` action
+- In the `show` action, if the user is logged in (if their `user_id` is in the session hash):
+  - Return a JSON response with the user's ID, username, image URL, and bio; and a HTTP status code of 201 (Created)
+- If the user is **not** logged in when they make the request:
+  - Return a JSON response with an error message, and a status of 401 (Unauthorized)
+
+Make sure this route works as intended by running `learn test` before moving
+forward. You should also be able to test this in the React application by
+refreshing the page after logging in, and seeing that you are still logged in.
+
 ### Login Feature
 
 Now that users can create accounts via the API, let's give them a way to log
@@ -105,7 +125,7 @@ Handle login by implementing a `POST /login` route. It should:
 - Be handled in the `SessionsController` with a `create` action
 - In the `create` action, if the user's username and password are authenticated:
   - Save the user's ID in the session hash
-  - Return a JSON response with the user's ID, username, image URL, and bio; and a HTTP status code of 201 (Created)
+  - Return a JSON response with the user's ID, username, image URL, and bio
 - If the user's username and password are not authenticated:
   - Return a JSON response with an error message, and a status of 401 (Unauthorized)
 
@@ -128,23 +148,6 @@ Handle logout by implementing a `DELETE /logout` route. It should:
 
 Make sure this route works as intended by running `learn test` before moving
 forward. You should also be able to test this in the React application by clicking the logout button.
-
-### Auto-Login Feature
-
-Users can log into our app! 🎉 But we want them to **stay** logged in when they
-refresh the page, or navigate back to our site from somewhere else.
-
-Handle auto-login by implementing a `GET /me` route. It should:
-
-- Be handled in the `UsersController` with a `show` action
-- In the `show` action, if the user is logged in (if their `user_id` is in the session hash):
-  - Return a JSON response with the user's ID, username, image URL, and bio; and a HTTP status code of 201 (Created)
-- If the user is **not** logged in when they make the request:
-  - Return a JSON response with an error message, and a status of 401 (Unauthorized)
-
-Make sure this route works as intended by running `learn test` before moving
-forward. You should also be able to test this in the React application by
-refreshing the page after logging in, and seeing that you are still logged in.
 
 ### Recipe List Feature
 
