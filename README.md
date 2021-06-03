@@ -41,6 +41,10 @@ npm start --prefix client
 
 ## Instructions
 
+For all the deliverables below, if you use any Rails generators to create models
+or controllers, make sure to use the `--no-test-framework` flag to avoid
+overwriting the existing tests.
+
 ### Models
 
 Create a `User` model with the following attributes:
@@ -58,6 +62,7 @@ Your `User` model should also:
 
 Next, create a `Recipe` model with the following attributes:
 
+- a recipe **belongs to** a user
 - `title` that is a `string` type
 - `instructions` that is a `text` type
 - `minutes_to_complete` that is a `integer` type
