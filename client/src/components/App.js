@@ -17,25 +17,23 @@ function App() {
     });
   }, []);
 
-  if (user) {
-    return (
-      <>
-        <NavBar user={user} setUser={setUser} />
-        <main>
-          <Switch>
-            <Route path="/new">
-              <NewRecipe />
-            </Route>
-            <Route path="/">
-              <RecipeList />
-            </Route>
-          </Switch>
-        </main>
-      </>
-    );
-  } else {
-    return <Login onLogin={setUser} />;
-  }
+  if (!user) return <Login onLogin={setUser} />;
+
+  return (
+    <>
+      <NavBar user={user} setUser={setUser} />
+      <main>
+        <Switch>
+          <Route path="/new">
+            <NewRecipe user={user} />
+          </Route>
+          <Route path="/">
+            <RecipeList />
+          </Route>
+        </Switch>
+      </main>
+    </>
+  );
 }
 
 export default App;
