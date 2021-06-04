@@ -7,13 +7,12 @@
 
 ## Introduction
 
-This is the biggest lab yet for this phase, so make sure to set aside
-some time for this one. It's set up with a few different checkpoints
-so that you can build out the features incrementally. By the end of
-this lab, you'll have built out full authentication and authorization
-flow using sessions and cookies in Rails, so getting this lab under your
-belt will give you some good code to reference when you're building
-your next project with auth. Let's get started!
+This is the biggest lab yet for this phase, so make sure to set aside some time
+for this one. It's set up with a few different checkpoints so that you can build
+out the features incrementally. By the end of this lab, you'll have built out
+full authentication and authorization flow using sessions and cookies in Rails,
+so getting this lab under your belt will give you some good code to reference
+when you're building your next project with auth. Let's get started!
 
 ## Setup
 
@@ -75,10 +74,12 @@ Add validations for the `Recipe` model:
 
 Run the migrations after creating your models.
 
-Check your work by running `learn test` and ensure that the tests for the models
-are passing before moving forward.
+Ensure that the tests for the models are passing before moving forward. To run the
+tests for _only_ the model files, run:
 
-<!-- TODO: add seed data and instructions on seeding -->
+```sh
+rspec spec/models
+```
 
 ### Sign Up Feature
 
@@ -94,10 +95,6 @@ Handle sign up by implementing a `POST /signup` route. It should:
 - If the user is not valid:
   - Return a JSON response with the error message, and a HTTP status code of 422 (Unprocessable Entity)
 
-Make sure this route works as intended by running `learn test` before moving
-forward. You should also be able to test this in the React application by
-signing up via the sign up form.
-
 ### Auto-Login Feature
 
 Users can log into our app! 🎉 But we want them to **stay** logged in when they
@@ -111,9 +108,17 @@ Handle auto-login by implementing a `GET /me` route. It should:
 - If the user is **not** logged in when they make the request:
   - Return a JSON response with an error message, and a status of 401 (Unauthorized)
 
-Make sure this route works as intended by running `learn test` before moving
-forward. You should also be able to test this in the React application by
-refreshing the page after logging in, and seeing that you are still logged in.
+Make sure the signup and auto-login features work as intended before moving
+forward. You can test the `UsersController` requests with RSpec:
+
+```sh
+rspec spec/requests/users_spec.rb
+```
+
+You should also be able to test this in the React application by signing up via
+the sign up form to check the `POST /signup` route; and refreshing the page
+after logging in, and seeing that you are still logged in to test the `GET /me`
+route.
 
 ### Login Feature
 
@@ -146,8 +151,16 @@ Handle logout by implementing a `DELETE /logout` route. It should:
 - If the user is **not** logged in when they make the request:
   - Return a JSON response with an error message, and a status of 401 (Unauthorized)
 
-Make sure this route works as intended by running `learn test` before moving
-forward. You should also be able to test this in the React application by clicking the logout button.
+Make sure the login and logout features work as intended before moving
+forward. You can test the `SessionsController` requests with RSpec:
+
+```sh
+rspec spec/requests/sessions_spec.rb
+```
+
+You should also be able to test this in the React application by logging in to
+check the `POST /login` route; and logging out with the logout button to test
+the `DELETE /logout` route.
 
 ### Recipe List Feature
 
@@ -182,6 +195,8 @@ Handle recipe creation by implementing a `POST /recipes` route. It should:
   - Return a JSON response with the error messages, and a HTTP status code of
     422 (Unprocessable Entity)
 
-Make sure this route works as intended by running `learn test` before moving
-forward. You should also be able to test this in the React application by
-creating a new recipe from the recipe form page.
+After finishing the `RecipeController` features, you're done! Make sure to check
+your work. You should be able to run the full test suite now with `learn test`.
+
+You should also be able to test this in the React application by creating a new
+recipe with the recipe form, and viewing a list of recipes.
