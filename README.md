@@ -65,7 +65,7 @@ Next, create a `Recipe` model with the following attributes:
 - a recipe **belongs to** a user
 - `title` that is a `string` type
 - `instructions` that is a `text` type
-- `minutes_to_complete` that is a `integer` type
+- `minutes_to_complete` that is an `integer` type
 
 Add validations for the `Recipe` model:
 
@@ -91,9 +91,14 @@ Handle sign up by implementing a `POST /signup` route. It should:
 - In the `create` action, if the user is valid:
   - Save a new user to the database with their username, encrypted password, image URL, and bio
   - Save the user's ID in the session hash
-  - Return a JSON response with the user's ID, username, image URL, and bio; and a HTTP status code of 201 (Created)
+  - Return a JSON response with the user's ID, username, image URL, and bio; and an HTTP status code of 201 (Created)
 - If the user is not valid:
-  - Return a JSON response with the error message, and a HTTP status code of 422 (Unprocessable Entity)
+  - Return a JSON response with the error message, and an HTTP status code of 422 (Unprocessable Entity)
+
+> Note: Recall that we need to format our error messages in a way that makes it
+> easy to display the information in our frontend. For this lab, because we are
+> setting up multiple validations on our `User` and `Recipe` models, our error
+> responses need to be formatted in a way that accommodates multiple errors.
 
 ### Auto-Login Feature
 
@@ -104,7 +109,7 @@ Handle auto-login by implementing a `GET /me` route. It should:
 
 - Be handled in the `UsersController` with a `show` action
 - In the `show` action, if the user is logged in (if their `user_id` is in the session hash):
-  - Return a JSON response with the user's ID, username, image URL, and bio; and a HTTP status code of 201 (Created)
+  - Return a JSON response with the user's ID, username, image URL, and bio; and an HTTP status code of 201 (Created)
 - If the user is **not** logged in when they make the request:
   - Return a JSON response with an error message, and a status of 401 (Unauthorized)
 
@@ -147,7 +152,7 @@ Handle logout by implementing a `DELETE /logout` route. It should:
 - Be handled in the `SessionsController` with a `destroy` action
 - In the `destroy` action, if the user is logged in (if their `user_id` is in the session hash):
   - Remove the user's ID from the session hash
-  - Return an empty response with a HTTP status code of 204 (No Content)
+  - Return an empty response with an HTTP status code of 204 (No Content)
 - If the user is **not** logged in when they make the request:
   - Return a JSON response with an error message, and a status of 401 (Unauthorized)
 
@@ -172,7 +177,7 @@ Handle recipe viewing by implementing a `GET /recipes` route. It should:
 - In the `index` action, if the user is logged in (if their `user_id` is in the session hash):
   - Return a JSON response with of an array of all recipes with their title,
     instructions, and minutes to complete data along with a nested user object;
-    and a HTTP status code of 201 (Created)
+    and an HTTP status code of 201 (Created)
 - If the user is **not** logged in when they make the request:
   - Return a JSON response with an error message, and a status of 401 (Unauthorized)
 
@@ -188,11 +193,11 @@ Handle recipe creation by implementing a `POST /recipes` route. It should:
     to** the logged in user, and should have title, instructions, and minutes to
     complete data provided from the params hash
   - Return a JSON response with the title, instructions, and minutes to complete
-    data along with a nested user object; and a HTTP status code of 201 (Created)
+    data along with a nested user object; and an HTTP status code of 201 (Created)
 - If the user is **not** logged in when they make the request:
   - Return a JSON response with an error message, and a status of 401 (Unauthorized)
 - If the recipe is **not valid**:
-  - Return a JSON response with the error messages, and a HTTP status code of
+  - Return a JSON response with the error messages, and an HTTP status code of
     422 (Unprocessable Entity)
 
 After finishing the `RecipeController` features, you're done! Make sure to check
