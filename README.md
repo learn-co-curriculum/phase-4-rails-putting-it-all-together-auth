@@ -186,7 +186,7 @@ Handle recipe viewing by implementing a `GET /recipes` route. It should:
 - Be handled in the `RecipesController` with a `index` action
 - In the `index` action, if the user is logged in (if their `user_id` is in the
   session hash):
-  - Return a JSON response with of an array of all recipes with their title,
+  - Return a JSON response with an array of all recipes with their title,
     instructions, and minutes to complete data along with a nested user object;
     and an HTTP status code of 201 (Created)
 - If the user is **not** logged in when they make the request:
