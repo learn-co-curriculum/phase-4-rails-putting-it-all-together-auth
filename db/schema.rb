@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_29_014523) do
+ActiveRecord::Schema.define(version: 2023_02_04_165506) do
+
+  create_table "exercises", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.string "log_date"
+    t.string "repetition_type"
+    t.integer "repetition_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "exercise_id"
+    t.index ["exercise_id"], name: "index_logs_on_exercise_id"
+    t.index ["user_id"], name: "index_logs_on_user_id"
+  end
 
   create_table "recipes", force: :cascade do |t|
     t.string "title"
@@ -30,4 +49,6 @@ ActiveRecord::Schema.define(version: 2022_11_29_014523) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "logs", "exercises"
+  add_foreign_key "logs", "users"
 end

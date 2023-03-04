@@ -3,7 +3,9 @@ Rails.application.routes.draw do
    # User Routes
    resources :users
    resources :recipes
-   
+   resources :exercises
+   resources :logs
+
    post '/signup', to: 'users#create'
    get '/me', to: 'users#show'
  
