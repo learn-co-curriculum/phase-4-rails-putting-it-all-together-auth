@@ -46,7 +46,7 @@ function NewLog({user}) {
         }).then((r) => {
             setIsLoading(false);
             if (r.ok) {
-                history.push("/exercises");
+                history.push("/history");
             } else {
                 r.json().then((err) => setErrors(err.errors));
             }
