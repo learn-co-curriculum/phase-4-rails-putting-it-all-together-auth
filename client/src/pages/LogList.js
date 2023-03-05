@@ -22,7 +22,7 @@ function LogList() {
         <>
             <Wrapper>
                 <div style={{marginBottom: 24}}>
-                    <Button as={Link} to="/new_log">
+                    <Button as={Link} to="/new_logs">
                         Add new log
                     </Button>
                 </div>
