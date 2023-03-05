@@ -56,7 +56,7 @@ function NewLog({user}) {
     return (
         <Wrapper>
             <WrapperChild>
-                <h2>Create Exercise</h2>
+                <h2>Create Log</h2>
                 <form onSubmit={handleSubmit}>
                     <FormField>
                         <Label htmlFor="exerciseID">Exercise ID</Label>
@@ -67,6 +67,7 @@ function NewLog({user}) {
                             onChange={(e) => setExerciseId(e.target.value)}
                         />
                     </FormField>
+                    <Select/>
                     <FormField>
                         <Label htmlFor="repetitionCount">Repetition count</Label>
                         <Input
