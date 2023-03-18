@@ -3,20 +3,18 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
 import NewExercise from "../pages/NewExercise";
-import ExerciseList from "../pages/ExerciseList";
-import NewLog from "../pages/NewLog";
-import LogList from "../pages/LogList";
-import axios from 'axios'
+import List from "../pages/exercise/List";
+import Update from "../pages/exercise/Update";
+import Show from "../pages/exercise/Show";
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     // auto-login
-    axios.get("/me").then((r) => {
-      console.log(r.status)
-      if (r.status === 200) {
-        setUser(r.data)
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
       }
     });
   }, []);
@@ -31,17 +29,17 @@ function App() {
           <Route path="/new_exercise">
             <NewExercise user={user} />
           </Route>
+          <Route path="/exercises/:exercise_id/update_log/:id">
+            <Update/>
+          </Route>
+          <Route path="/exercises/:id">
+            <Show/>
+          </Route>
           <Route path="/exercises">
-            <ExerciseList user={user} />
-          </Route>
-          <Route path="/new_logs">
-            <NewLog user={user} />
-          </Route>
-          <Route path="/history">
-            <LogList user={user} />
+            <List />
           </Route>
           <Route path="/">
-            <LogList user={user} />
+            <List user={user} />
           </Route>
         </Switch>
       </main>

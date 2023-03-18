@@ -18,9 +18,6 @@ function NavBar({ user, setUser }) {
         <Link to="/">Killing Machine</Link>
       </Logo>
       <Nav>
-        <Button as={Link} to="/history">
-          My history
-        </Button>
         <Button as={Link} to="/exercises">
           Exercises
         </Button>

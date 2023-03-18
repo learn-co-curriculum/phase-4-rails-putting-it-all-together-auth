@@ -5,7 +5,8 @@ class ExercisesController < ApplicationController
   end
 
   def show
-    render json: exercise.to_json
+    exercise = Exercise.find(params[:id])
+    render json: exercise
   end
 
   def update
@@ -27,6 +28,6 @@ class ExercisesController < ApplicationController
   end
 
   def exercise_params
-    params.permit(:title, :description)
+    params.permit(:id, :title, :description)
   end
 end
